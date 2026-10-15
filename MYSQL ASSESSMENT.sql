@@ -42,3 +42,4 @@ alter table employees add salary decimal(10,2);
 alter table employees add foreign key(department_id)references departments(department_id);
 alter table employees add foreign key(location_id)references location(location_id);
 alter table employees modify gender enum('M','F');
+
