@@ -1,0 +1,240 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "165f8a00-52cd-418b-9982-cb5a7f1a945d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'S_No': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 'Name': ['Ravi\", Meera', 'Same', 'Anu', 'Raj', 'Divya', 'Arjun', 'Kiran', 'Leel', 'Nisha'], 'Feedback': ['very GOOD Service!!!', 'poor support, not happy', 'GREAT experience! will come again.', 'okay okay...', 'not BAD', 'Excellent care, excellent staff!', 'good food and good ambience!', 'poor response and poor handling of issue', 'Good support...quick service.'], 'Rating': [5, 2, 5, 3, 2, 5, 4, 1, 3, 4]}\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Preloaded Feedbacks\n",
+    "\n",
+    "feedback_data = {'S_No': [1,2,3,4,5,6,7,8,9,10],\n",
+    "                 'Name': ['Ravi\", Meera', 'Same', 'Anu', 'Raj', 'Divya', 'Arjun', 'Kiran', 'Leel', 'Nisha'],\n",
+    "                 'Feedback': ['very GOOD Service!!!',\n",
+    "                              'poor support, not happy',\n",
+    "                              'GREAT experience! will come again.',\n",
+    "                              'okay okay...',\n",
+    "                              'not BAD', \n",
+    "                              'Excellent care, excellent staff!',\n",
+    "                              'good food and good ambience!',\n",
+    "                              'poor response and poor handling of issue',\n",
+    "                              'Good support...quick service.'],\n",
+    "                 'Rating': [5,2,5,3,2,5,4,1,3,4]}\n",
+    "print(feedback_data)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "0eb388e7-c42f-4081-989e-946709edff6d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "How many more feedbacks do you want to add? 2\n",
+      "Enter Name: Ravi\n",
+      "Enter feedback: Good service\n",
+      "Enter Rating(1-5): 5\n",
+      "Enter Name: Meera\n",
+      "Enter feedback: Excellent service\n",
+      "Enter Rating(1-5): 4\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'S_No': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 'Name': ['Ravi\", Meera', 'Same', 'Anu', 'Raj', 'Divya', 'Arjun', 'Kiran', 'Leel', 'Nisha', 'Meera'], 'Feedback': ['very GOOD Service!!!', 'poor support, not happy', 'GREAT experience! will come again.', 'okay okay...', 'not BAD', 'Excellent care, excellent staff!', 'good food and good ambience!', 'poor response and poor handling of issue', 'Good support...quick service.', 'Excellent service'], 'Rating': [5, 2, 5, 3, 2, 5, 4, 1, 3, 4, 4]}\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Add more feedback\n",
+    "\n",
+    "n = int(input(\"How many more feedbacks do you want to add?\"))\n",
+    "for i in range(n):\n",
+    "    name = input(\"Enter Name:\")\n",
+    "    feedback = input(\"Enter feedback:\")\n",
+    "    rating = int(input(\"Enter Rating(1-5):\"))\n",
+    "feedback_data['S_No'].append(len(feedback_data['S_No'])+1)\n",
+    "feedback_data['Name'].append(name)\n",
+    "feedback_data['Feedback'].append(feedback)\n",
+    "feedback_data['Rating'].append(rating)\n",
+    "print(feedback_data)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "0152ae02-57f9-4701-9753-cb954f380649",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['very good service', 'poor support not happy', 'great experience will come again', 'okay okay', 'not bad', 'excellent care excellent staff', 'good food and good ambience', 'poor response and poor handling of issue', 'good supportquick service', 'excellent service']\n"
+     ]
+    }
+   ],
+   "source": [
+    "#Text cleaning\n",
+    "\n",
+    "for i in range(len(feedback_data['Feedback'])):\n",
+    "    text = feedback_data['Feedback'][i]\n",
+    "    text = text.replace(\".\",\"\")\n",
+    "    text = text.replace(\",\",\"\")\n",
+    "    text = text.replace(\"!\",\"\")\n",
+    "    text = text.replace(\"?\",\"\")\n",
+    "    text = \" \".join(text.split())\n",
+    "    text = text.strip()\n",
+    "    text = text.lower()\n",
+    "    feedback_data['Feedback'][i] = text\n",
+    "print(feedback_data['Feedback'])\n",
+    "    \n",
+    "                        \n",
+    "          "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "id": "c528fe77-95af-4a4b-91e0-838df8bdb1f7",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "No of feedbacks containing good: 3\n",
+      "No of feedbacks containing poor: 2\n",
+      "No of feedbacks containing excellent: 2\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Word count insight\n",
+    "\n",
+    "def count_word_in_feedback(word):\n",
+    "    count = 0\n",
+    "    for feedback in feedback_data['Feedback']:\n",
+    "        if word.lower() in feedback.lower():\n",
+    "            count += 1\n",
+    "    return count\n",
+    "\n",
+    "print(\"No of feedbacks containing good:\", count_word_in_feedback(\"good\"))\n",
+    "print(\"No of feedbacks containing poor:\", count_word_in_feedback(\"poor\"))\n",
+    "print(\"No of feedbacks containing excellent:\", count_word_in_feedback(\"excellent\"))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "id": "66fc5bb1-7c48-4264-8d00-51de7a3cf17c",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Final Cleaned Feedback Data:\n",
+      "{'S_No': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 'Name': ['Ravi\", Meera', 'Same', 'Anu', 'Raj', 'Divya', 'Arjun', 'Kiran', 'Leel', 'Nisha', 'Meera'], 'Feedback': ['very good service', 'poor support not happy', 'great experience will come again', 'okay okay', 'not bad', 'excellent care excellent staff', 'good food and good ambience', 'poor response and poor handling of issue', 'good supportquick service', 'excellent service'], 'Rating': [5, 2, 5, 3, 2, 5, 4, 1, 3, 4, 4]}\n",
+      "Average Rating: 3.45\n",
+      "Longest Feedback: poor response and poor handling of issue\n",
+      "Unique Words:\n",
+      "{'issue', 'very', 'and', 'supportquick', 'not', 'great', 'staff', 'food', 'excellent', 'handling', 'bad', 'will', 'care', 'ambience', 'good', 'of', 'poor', 'support', 'again', 'service', 'experience', 'come', 'response', 'happy', 'okay'}\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Final summary & insight\n",
+    "\n",
+    "# 1. Display final cleaned feedback data\n",
+    "print(\"Final Cleaned Feedback Data:\")\n",
+    "print(feedback_data)\n",
+    "\n",
+    "# 2. Average Rating\n",
+    "average_rating = sum(feedback_data['Rating']) / len(feedback_data['Rating'])\n",
+    "print(\"Average Rating:\", round(average_rating, 2))\n",
+    "\n",
+    "# 3. Longest Feedback\n",
+    "longest_feedback = max(feedback_data['Feedback'], key=lambda x: len(x.split()))\n",
+    "print(\"Longest Feedback:\", longest_feedback)\n",
+    "\n",
+    "# 4. Unique Words\n",
+    "unique_words = set()\n",
+    "for feedback in feedback_data['Feedback']:\n",
+    "    unique_words.update(feedback.split())\n",
+    "\n",
+    "print(\"Unique Words:\")\n",
+    "print(unique_words)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "id": "bf042ee5-e259-4323-bfeb-c20f86d7c328",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Sorted Feedback:\n",
+      "[('Ravi\", Meera', 'very good service', 5), ('Anu', 'great experience will come again', 5), ('Arjun', 'excellent care excellent staff', 5), ('Kiran', 'good food and good ambience', 4), ('Meera', 'excellent service', 4), ('Raj', 'okay okay', 3), ('Nisha', 'good supportquick service', 3), ('Same', 'poor support not happy', 2), ('Divya', 'not bad', 2), ('Leel', 'poor response and poor handling of issue', 1)]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Sort feedback by rating (highest to lowest)\n",
+    "\n",
+    "sorted_feedback = sorted(zip(feedback_data['Name'],\n",
+    "    feedback_data['Feedback'], feedback_data['Rating']),\n",
+    "    key=lambda x: x[2],\n",
+    "    reverse=True)\n",
+    "print(\"Sorted Feedback:\")\n",
+    "print(sorted_feedback)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "44ab5e57-4cbb-4cb4-84a0-bb89fbd4821a",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.14.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
