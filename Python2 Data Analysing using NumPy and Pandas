@@ -1,0 +1,747 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "9fbacab3-f173-46e6-a276-4bf4e7bfb7e5",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[22.5 25.3 20.8 23.4 26.1 24.8 21.9]\n"
+     ]
+    }
+   ],
+   "source": [
+    "## 1 CREATE A 1D NUMPY ARRAY\n",
+    "\n",
+    "import numpy as np\n",
+    "\n",
+    "temperatures_w1 = np.array([22.5, 25.3, 20.8, 23.4, 26.1, 24.8, 21.9])\n",
+    "\n",
+    "print(temperatures_w1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "22749e4e-7c21-4dcb-9a05-4f7214d5f96b",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Shape: (7,)\n",
+      "Data Type: float64\n",
+      "Number of Elements: 7\n"
+     ]
+    }
+   ],
+   "source": [
+    "##2 INSPECTION AND PROPERTIES\n",
+    "\n",
+    "print(\"Shape:\", temperatures_w1.shape)\n",
+    "print(\"Data Type:\", temperatures_w1.dtype)\n",
+    "print(\"Number of Elements:\", temperatures_w1.size)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "d86db352-6f15-417c-a9b7-ae34a608803f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Fahrenheit: [72.5  77.54 69.44 74.12 78.98 76.64 71.42]\n",
+      "Maximum Temperature: 26.1\n",
+      "Minimum Temperature: 20.8\n",
+      "Mean Temperature: 23.542857142857144\n"
+     ]
+    }
+   ],
+   "source": [
+    "## 3 ARRAY OPERATIONS\n",
+    "\n",
+    "fahrenheit = (temperatures_w1 * 9/5) + 32\n",
+    "\n",
+    "print(\"Fahrenheit:\", fahrenheit)\n",
+    "\n",
+    "print(\"Maximum Temperature:\", np.max(temperatures_w1))\n",
+    "print(\"Minimum Temperature:\", np.min(temperatures_w1))\n",
+    "print(\"Mean Temperature:\", np.mean(temperatures_w1))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "3c868774-f2ca-42a9-8c93-09292e6e4686",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "First Three Days: [22.5 25.3 20.8]\n",
+      "Weekend: [24.8 21.9]\n",
+      "Middle Three Days: [20.8 23.4 26.1]\n"
+     ]
+    }
+   ],
+   "source": [
+    "## 4 ARRAY SLICING AND INDEXING\n",
+    "\n",
+    "print(\"First Three Days:\", temperatures_w1[:3])\n",
+    "\n",
+    "print(\"Weekend:\", temperatures_w1[-2:])\n",
+    "\n",
+    "print(\"Middle Three Days:\", temperatures_w1[2:5])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "19fb3cc4-6440-4a92-9d49-589388850aaf",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[22.5 25.3 20.8 23.4 26.1 24.8 21.9]\n",
+      " [19.2 22.5 21.3 24.  23.5 22.8 20.1]]\n"
+     ]
+    }
+   ],
+   "source": [
+    "## 5 CREATE 2D ARRAY\n",
+    "\n",
+    "temperatures = np.array([[22.5, 25.3, 20.8, 23.4, 26.1, 24.8, 21.9],\n",
+    "    [19.2, 22.5, 21.3, 24.0, 23.5, 22.8, 20.1]])\n",
+    "\n",
+    "print(temperatures)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "cac657db-40ea-4ff5-9d19-19e8f9945668",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Shape: (2, 7)\n",
+      "Data Type: float64\n",
+      "Total Elements: 14\n"
+     ]
+    }
+   ],
+   "source": [
+    "## 6 INSPECT AND SLICE THE 2D ARRAY\n",
+    "# 1 INSPECT PRAPERTIES\n",
+    "\n",
+    "print(\"Shape:\", temperatures.shape)\n",
+    "print(\"Data Type:\", temperatures.dtype)\n",
+    "print(\"Total Elements:\", temperatures.size)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "f8cf363e-05e5-4a15-a8e8-c3b38908e0ea",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Week 1: [22.5 25.3 20.8 23.4 26.1 24.8 21.9]\n",
+      "Week 2: [19.2 22.5 21.3 24.  23.5 22.8 20.1]\n",
+      "Week 1 Weekend: [24.8 21.9]\n",
+      "Week 2 Weekend: [22.8 20.1]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# 2 EXTRACT TEMPERATURES FOR EACH WEEK AND WEEKENDS\n",
+    "\n",
+    "print(\"Week 1:\", temperatures[0])\n",
+    "print(\"Week 2:\", temperatures[1])\n",
+    "print(\"Week 1 Weekend:\", temperatures[0, -2:])\n",
+    "print(\"Week 2 Weekend:\", temperatures[1, -2:])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "1a38e091-5739-4a42-ad06-628976ac1582",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Rank1    95\n",
+      "Rank2    92\n",
+      "Rank3    89\n",
+      "Rank4    85\n",
+      "Rank5    80\n",
+      "dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "## PANDAS SERIES\n",
+    "# 1 CREATING PANDAS SERIES\n",
+    "\n",
+    "import pandas as pd\n",
+    "\n",
+    "marks = pd.Series([95, 92, 89, 85, 80],\n",
+    "    index=['Rank1', 'Rank2', 'Rank3', 'Rank4', 'Rank5'])\n",
+    "\n",
+    "print(marks)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "8c1c4ab6-6390-4d8a-bc64-6a8ccca97513",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "First Rank: 95\n",
+      "Top 3 Ranks:\n",
+      "Rank1    95\n",
+      "Rank2    92\n",
+      "Rank3    89\n",
+      "dtype: int64\n",
+      "Third Rank: 89\n",
+      "Marks Greater than 90:\n",
+      "Rank1    95\n",
+      "Rank2    92\n",
+      "dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "# 2 INDEXING AND SLICING\n",
+    "\n",
+    "# 1. First rank student using integer position\n",
+    "print(\"First Rank:\", marks.iloc[0])\n",
+    "\n",
+    "# 2. Top 3 ranks using loc\n",
+    "print(\"Top 3 Ranks:\")\n",
+    "print(marks.loc[['Rank1', 'Rank2', 'Rank3']])\n",
+    "\n",
+    "# 3. Third rank student using iloc\n",
+    "print(\"Third Rank:\", marks.iloc[2])\n",
+    "\n",
+    "# 4. Boolean Mask - Marks greater than 90\n",
+    "print(\"Marks Greater than 90:\")\n",
+    "print(marks[marks > 90])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "ded8a8dc-4fb8-42cc-b754-ecc4092a2f80",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Updated Marks:\n",
+      "Rank1    100\n",
+      "Rank2     92\n",
+      "Rank3     89\n",
+      "Rank4     85\n",
+      "Rank5     80\n",
+      "dtype: int64\n",
+      "After Removing Last Rank:\n",
+      "Rank1    100\n",
+      "Rank2     92\n",
+      "Rank3     89\n",
+      "Rank4     85\n",
+      "dtype: int64\n",
+      "CGPA:\n",
+      "Rank1    10.0\n",
+      "Rank2     9.2\n",
+      "Rank3     8.9\n",
+      "Rank4     8.5\n",
+      "dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "# 3 MANIPULATING SERIES\n",
+    "\n",
+    "# Modify first rank mark to 100\n",
+    "marks.loc['Rank1'] = 100\n",
+    "\n",
+    "print(\"Updated Marks:\")\n",
+    "print(marks)\n",
+    "\n",
+    "# Remove last rank\n",
+    "marks = marks.drop('Rank5')\n",
+    "\n",
+    "print(\"After Removing Last Rank:\")\n",
+    "print(marks)\n",
+    "\n",
+    "# Calculate CGPA\n",
+    "cgpa = marks / 10\n",
+    "\n",
+    "print(\"CGPA:\")\n",
+    "print(cgpa)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "bcd63a6f-cc90-4449-b876-040e6b2eff87",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "   TransactionID ProductCategory Region  Amount\n",
+      "0            101     Electronics  North     200\n",
+      "1            102        Clothing  South     150\n",
+      "2            103     Electronics  North     300\n",
+      "3            104       Furniture   East     450\n",
+      "4            105        Clothing   West     200\n",
+      "5            106     Electronics  North     250\n",
+      "6            107       Furniture   East     300\n",
+      "7            108        Clothing   West     180\n",
+      "8            109       Furniture  South     350\n",
+      "9            110     Electronics  North     400\n"
+     ]
+    }
+   ],
+   "source": [
+    "## PANDAS DATAFRAME\n",
+    "# 1 CREATING PANDAS DATAFRAME\n",
+    "\n",
+    "transactions = pd.DataFrame({'TransactionID': [101, 102, 103, 104, 105, 106, 107, 108, 109, 110],\n",
+    "\n",
+    "    'ProductCategory': ['Electronics', 'Clothing', 'Electronics', 'Furniture',\n",
+    "        'Clothing', 'Electronics', 'Furniture', 'Clothing',\n",
+    "        'Furniture', 'Electronics'],\n",
+    "    'Region': ['North', 'South', 'North', 'East', 'West',\n",
+    "        'North', 'East', 'West', 'South', 'North'],\n",
+    "    'Amount': [200, 150, 300, 450, 200, 250, 300, 180, 350, 400]})\n",
+    "print(transactions)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "b37e0ae8-7ac4-415f-a59d-31095db2ad1c",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "   TransactionID ProductCategory Region  Amount\n",
+      "0            101     Electronics  North     200\n",
+      "1            102        Clothing  South     150\n",
+      "2            103     Electronics  North     300\n",
+      "3            104       Furniture   East     450\n",
+      "4            105        Clothing   West     200\n",
+      "5            106     Electronics  North     250\n",
+      "6            107       Furniture   East     300\n",
+      "7            108        Clothing   West     180\n",
+      "8            109       Furniture  South     350\n",
+      "9            110     Electronics  North     400\n",
+      "\n",
+      "First 5 Rows:\n",
+      "   TransactionID ProductCategory Region  Amount\n",
+      "0            101     Electronics  North     200\n",
+      "1            102        Clothing  South     150\n",
+      "2            103     Electronics  North     300\n",
+      "3            104       Furniture   East     450\n",
+      "4            105        Clothing   West     200\n",
+      "\n",
+      "Last 5 Rows:\n",
+      "   TransactionID ProductCategory Region  Amount\n",
+      "5            106     Electronics  North     250\n",
+      "6            107       Furniture   East     300\n",
+      "7            108        Clothing   West     180\n",
+      "8            109       Furniture  South     350\n",
+      "9            110     Electronics  North     400\n",
+      "\n",
+      "Shape:\n",
+      "(10, 4)\n",
+      "\n",
+      "Column Names:\n",
+      "Index(['TransactionID', 'ProductCategory', 'Region', 'Amount'], dtype='str')\n",
+      "\n",
+      "Data Types:\n",
+      "TransactionID      int64\n",
+      "ProductCategory      str\n",
+      "Region               str\n",
+      "Amount             int64\n",
+      "dtype: object\n",
+      "\n",
+      "Basic Information:\n",
+      "<class 'pandas.DataFrame'>\n",
+      "RangeIndex: 10 entries, 0 to 9\n",
+      "Data columns (total 4 columns):\n",
+      " #   Column           Non-Null Count  Dtype\n",
+      "---  ------           --------------  -----\n",
+      " 0   TransactionID    10 non-null     int64\n",
+      " 1   ProductCategory  10 non-null     str  \n",
+      " 2   Region           10 non-null     str  \n",
+      " 3   Amount           10 non-null     int64\n",
+      "dtypes: int64(2), str(2)\n",
+      "memory usage: 593.0 bytes\n"
+     ]
+    }
+   ],
+   "source": [
+    "# 2 DATA EXPLORATION\n",
+    "# DISPLAY DATAFRAME AND BASIC INGORMATION\n",
+    "\n",
+    "print(transactions)\n",
+    "\n",
+    "print(\"\\nFirst 5 Rows:\")\n",
+    "print(transactions.head())\n",
+    "\n",
+    "print(\"\\nLast 5 Rows:\")\n",
+    "print(transactions.tail())\n",
+    "\n",
+    "print(\"\\nShape:\")\n",
+    "print(transactions.shape)\n",
+    "\n",
+    "print(\"\\nColumn Names:\")\n",
+    "print(transactions.columns)\n",
+    "\n",
+    "print(\"\\nData Types:\")\n",
+    "print(transactions.dtypes)\n",
+    "\n",
+    "print(\"\\nBasic Information:\")\n",
+    "transactions.info()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "27642bc8-3c8e-45bd-9d8b-712a3657a74f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "  ProductCategory  Amount\n",
+      "0     Electronics     200\n",
+      "1        Clothing     150\n",
+      "2     Electronics     300\n",
+      "3       Furniture     450\n",
+      "4        Clothing     200\n",
+      "5     Electronics     250\n",
+      "6       Furniture     300\n",
+      "7        Clothing     180\n",
+      "8       Furniture     350\n",
+      "9     Electronics     400\n"
+     ]
+    }
+   ],
+   "source": [
+    "# DISPLAY ONLY PRODUCTCATEGORY AND AMOUNT\n",
+    "\n",
+    "print(transactions[['ProductCategory', 'Amount']])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "160b46cb-c9b4-4ecf-be66-f2b21e37206b",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "  ProductCategory Region  Amount\n",
+      "0     Electronics  North     200\n",
+      "1        Clothing  South     150\n",
+      "2     Electronics  North     300\n",
+      "3       Furniture   East     450\n",
+      "4        Clothing   West     200\n",
+      "5     Electronics  North     250\n",
+      "6       Furniture   East     300\n",
+      "7        Clothing   West     180\n",
+      "8       Furniture  South     350\n",
+      "9     Electronics  North     400\n"
+     ]
+    }
+   ],
+   "source": [
+    "# RETRIEVE LAST 3COLUMNS\n",
+    "\n",
+    "print(transactions.iloc[:, -3:])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "9b7fdcc3-70d1-4582-860e-9100d168ef9f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "   TransactionID ProductCategory Region  Amount\n",
+      "2            103     Electronics  North     300\n",
+      "5            106     Electronics  North     250\n",
+      "9            110     Electronics  North     400\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Filter North Region and Amount Greater Than 200\n",
+    "\n",
+    "filtered_data = transactions[(transactions['Region'] == 'North') &\n",
+    "    (transactions['Amount'] > 200)]\n",
+    "print(filtered_data)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "9f5a676f-9fd7-4d4b-af29-b7464d7818f3",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "ProductCategory\n",
+      "Electronics    4\n",
+      "Clothing       3\n",
+      "Furniture      3\n",
+      "Name: count, dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Value Counts\n",
+    "\n",
+    "print(transactions['ProductCategory'].value_counts())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "afc86529-06ce-472c-90cb-bb76380439a4",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<ArrowStringArray>\n",
+      "['North', 'South', 'East', 'West']\n",
+      "Length: 4, dtype: str\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Unique Values in Region\n",
+    "\n",
+    "print(transactions['Region'].unique())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "3a8c0ba6-6776-46cc-b5de-adeb0e96ddd4",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Region\n",
+      "East     375.0\n",
+      "North    287.5\n",
+      "South    250.0\n",
+      "West     190.0\n",
+      "Name: Amount, dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Group By Region and Mean Amount\n",
+    "\n",
+    "print(transactions.groupby('Region')['Amount'].mean())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "976d2d5f-74c1-4215-b8d5-53f865aafabc",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "   TransactionID ProductCategory Region  Amount\n",
+      "0            101     Electronics  North     200\n",
+      "1            102        Clothing  South     165\n",
+      "2            103     Electronics  North     300\n",
+      "3            104       Furniture   East     450\n",
+      "4            105        Clothing   West     200\n",
+      "5            106     Electronics  North     250\n",
+      "6            107       Furniture   East     300\n",
+      "7            108        Clothing   West     180\n",
+      "8            109       Furniture  South     350\n",
+      "9            110     Electronics  North     400\n"
+     ]
+    }
+   ],
+   "source": [
+    "## MANUPULATING THE DATAFRAME\n",
+    "# Modify Amount for TransactionID 102 to 165\n",
+    "\n",
+    "transactions.loc [transactions['TransactionID']==102,'Amount']=165\n",
+    "print(transactions)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "id": "b7fb77cd-9ce4-4640-8286-db696817acf5",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "   TransactionID ProductCategory Region  Amount  Discount\n",
+      "0            101     Electronics  North     200      20.0\n",
+      "1            102        Clothing  South     165      16.5\n",
+      "2            103     Electronics  North     300      30.0\n",
+      "3            104       Furniture   East     450      45.0\n",
+      "4            105        Clothing   West     200      20.0\n",
+      "5            106     Electronics  North     250      25.0\n",
+      "6            107       Furniture   East     300      30.0\n",
+      "7            108        Clothing   West     180      18.0\n",
+      "8            109       Furniture  South     350      35.0\n",
+      "9            110     Electronics  North     400      40.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Add Discount Column (10%)\n",
+    "\n",
+    "transactions['Discount'] = transactions['Amount'] * 0.10\n",
+    "print(transactions)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "id": "76517ba0-2814-4d11-9735-4bfa688d46d6",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "   TransactionID ProductCategory Region  Amount  Discount\n",
+      "0            101     Electronics  North     200      20.0\n",
+      "1            102        Clothing  South     165      16.5\n",
+      "2            103     Electronics  North     300      30.0\n",
+      "3            104       Furniture   East     450      45.0\n",
+      "4            105        Clothing   West     200      20.0\n",
+      "5            106     Electronics  North     250      25.0\n",
+      "6            107       Furniture   East     300      30.0\n",
+      "7            108        Clothing   West     180      18.0\n",
+      "9            110     Electronics  North     400      40.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Remove TransactionID 109\n",
+    "\n",
+    "transactions = transactions[transactions['TransactionID'] != 109]\n",
+    "print(transactions)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "id": "a7dbb047-fb3a-4cd3-bf1d-ee341d048955",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "   TransactionID ProductCategory Region  Amount\n",
+      "0            101     Electronics  North     200\n",
+      "1            102        Clothing  South     165\n",
+      "2            103     Electronics  North     300\n",
+      "3            104       Furniture   East     450\n",
+      "4            105        Clothing   West     200\n",
+      "5            106     Electronics  North     250\n",
+      "6            107       Furniture   East     300\n",
+      "7            108        Clothing   West     180\n",
+      "9            110     Electronics  North     400\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Delete Discount Column\n",
+    "\n",
+    "transactions.drop('Discount', axis=1, inplace=True)\n",
+    "print(transactions)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ce700b73-6bee-4e80-a251-3c1d213d86ce",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.14.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
